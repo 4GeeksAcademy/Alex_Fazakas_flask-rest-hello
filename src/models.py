@@ -47,14 +47,15 @@ class Favorito(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     planetId = db.Column(db.Integer, db.ForeignKey("planet.id"), nullable=True)
     characterId = db.Column(db.Integer, db.ForeignKey("character.id"), nullable=True)
+    
     def __repr__(self):
-        return '<Favorite %r>' % self.id
-    def serialize(self): #aca va todos lo que este en class libro
+        return '<Favorito %r>' % self.id
+    
+    def serialize(self):
         return {
             "id": self.id,
-            "population": self.population,
-            "terrain": self.terrain
-            # do not serialize the password, its a security breach
+            "planetId": self.planetId,
+            "characterId": self.characterId
         }
 
 
