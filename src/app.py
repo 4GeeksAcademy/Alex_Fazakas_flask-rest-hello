@@ -51,6 +51,23 @@ def get_character_id(character_id):
         return jsonify(), 404
     return jsonify(character.serialize()), 200
 
+@app.route("/users")
+def user_list():
+    users = db.session.execute(db.select(User).order_by(User.email)).scalars()
+    result = [user.serialize()for user in users]
+    response_body = {
+        "mensaje": "estos sin tus usuarios",
+        "result": result
+    }
+    return response_body, 200
+"""    
+@app.route('/users/<int:users_id>', methods=['GET'])
+def get_users_id(users_id):
+    user = user.query.get(users_id)
+    if user is None:
+        return jsonify(), 404
+    return jsonify(user.serialize()), 200 """
+
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
