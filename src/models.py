@@ -51,18 +51,9 @@ class Favorito(db.Model):
     def __repr__(self):
         return '<Favorito %r>' % self.id
     
-    def serialize(self):
+    def serialize(self):  
         return {
             "id": self.id,
             "planetId": self.planetId,
             "characterId": self.characterId
         }
-
-
-
-
-
-
-
-
-
